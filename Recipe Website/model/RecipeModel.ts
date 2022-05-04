@@ -74,5 +74,16 @@ class RecipeModel {
         });
     }
 
+    public addRecipe(res: any, recipe: Object, filter: { accountId: any }) {
+        var query = this.model.findOne(filter);
+        query.exec( (err, item) => {
+            var newRecipes = item.recipes;
+            newRecipes.push(recipe);
+            var insertQuery = this.model.findOneAndUpdate(filter, {recipes:newRecipes});
+            query.exec( (err, itemArray) => {
+                res.json(itemArray);
+            });
+        });
+    }
 }
 export {RecipeModel};

@@ -50,9 +50,13 @@ class App {
     router.get('/app/recipes/', (req, res) => {
       console.log('Query All list');
       this.RecipeLists.retrieveAllLists(res);
-  });
+    });
 
-
+    router.post('/app/recipes/:accountId', (req, res) => {
+      console.log(req.body);
+      var id = req.params.accountId;
+      this.Recipes.addRecipe(res, req.body, {accountId: id});
+    });
 
     this.expressApp.use('/', router);
     this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
