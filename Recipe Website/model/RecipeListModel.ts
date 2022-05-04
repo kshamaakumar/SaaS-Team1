@@ -28,8 +28,19 @@ class RecipeListModel {
         );
     }
 
+    public modelAlreadyDeclared() {
+        try {
+          Mongoose.model('RecipeList')  // it throws an error if the model is still not defined
+          return true
+        } catch (e) {
+          return false
+        }
+      }
+
     public createModel(): void {
-        this.model = mongooseConnection.model<IRecipeListModel>("Recipes", this.schema);
+        if (!this.modelAlreadyDeclared()){
+            this.model = mongooseConnection.model<IRecipeListModel>("RecipeList", this.schema);
+        }
     }
 
     public retrieveAllLists(response:any): any {

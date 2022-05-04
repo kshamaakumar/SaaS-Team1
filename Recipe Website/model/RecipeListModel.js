@@ -21,8 +21,19 @@ var RecipeListModel = /** @class */ (function () {
             owner: String
         }, { collection: 'recipes' });
     };
+    RecipeListModel.prototype.modelAlreadyDeclared = function () {
+        try {
+            Mongoose.model('RecipeList'); // it throws an error if the model is still not defined
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+    };
     RecipeListModel.prototype.createModel = function () {
-        this.model = mongooseConnection.model("Recipes", this.schema);
+        if (!this.modelAlreadyDeclared()) {
+            this.model = mongooseConnection.model("RecipeList", this.schema);
+        }
     };
     RecipeListModel.prototype.retrieveAllLists = function (response) {
         var query = this.model.find({});

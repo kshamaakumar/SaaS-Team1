@@ -30,10 +30,22 @@ class RecipeModel {
             }, {collection: 'recipes'}
         );
     }
+    
+    public modelAlreadyDeclared() {
+        try {
+          Mongoose.model('Recipes')  // it throws an error if the model is still not defined
+          return true
+        } catch (e) {
+          return false
+        }
+      }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IRecipeModel>("Recipes", this.schema);
+        if (!this.modelAlreadyDeclared()){
+            this.model = mongooseConnection.model<IRecipeModel>("Recipes", this.schema);
+       }
     }
+    
     
     public retrieveTasksDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);
@@ -42,6 +54,7 @@ class RecipeModel {
         });
     }
 
+    // Has some error
     public retrieveTasksCount(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, innerTaskList) => {

@@ -22,8 +22,19 @@ var RecipeModel = /** @class */ (function () {
             ]
         }, { collection: 'recipes' });
     };
+    RecipeModel.prototype.modelAlreadyDeclared = function () {
+        try {
+            Mongoose.model('Recipes'); // it throws an error if the model is still not defined
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+    };
     RecipeModel.prototype.createModel = function () {
-        this.model = mongooseConnection.model("Recipes", this.schema);
+        if (!this.modelAlreadyDeclared()) {
+            this.model = mongooseConnection.model("Recipes", this.schema);
+        }
     };
     RecipeModel.prototype.retrieveTasksDetails = function (response, filter) {
         var query = this.model.findOne(filter);
