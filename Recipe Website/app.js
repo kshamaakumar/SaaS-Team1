@@ -38,6 +38,11 @@ var App = /** @class */ (function () {
             console.log('Query All list');
             _this.RecipeLists.retrieveAllLists(res);
         });
+        router.post('/app/recipe/:accountId', function (req, res) {
+            console.log('Add recipe' + req.body.recipeName);
+            var id = req.params.accountId;
+            _this.Recipes.addRecipe(res, req.body, { accountId: id });
+        });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
