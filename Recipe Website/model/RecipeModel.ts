@@ -74,14 +74,21 @@ class RecipeModel {
         });
     }
 
-    public addRecipe(res: any, recipe: Object, filter: { accountId: any }) {
+    public addRecipe(res: any, recipe: Object, filter: Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, item) => {
+            console.log("Session: %j",item);
             var newRecipes = item.recipes;
             newRecipes.push(recipe);
-            var insertQuery = this.model.findOneAndUpdate(filter, {recipes:newRecipes});
-            query.exec( (err, itemArray) => {
+            var insertQuery = this.model.findOneAndUpdate(filter, {recipes:newRecipes}, {
+                new: true
+            });
+            console.log();
+            insertQuery.exec( (err, itemArray) => {
+                console.log(err);
+                console.log("Updated document: %j",itemArray);
                 res.json(itemArray);
+
             });
         });
     }
