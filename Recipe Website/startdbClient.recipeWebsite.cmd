@@ -1,1 +1,1 @@
-mongo --port  -u dbAdmin -p test --authenticationDatabase admin
+mongo --port 27017 -u dbAdmin -p test --authenticationDatabase admin

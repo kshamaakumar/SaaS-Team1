@@ -5,6 +5,7 @@ recipesCollection.remove({})
 recipesCollection.insert(
 {
 	accountId : 1,
+	userName: "John",
 	recipes : [
 	 {
 	  recipeId: 11,
@@ -22,6 +23,7 @@ recipesCollection.insert(
 recipesCollection.insert(
 {
 	accountId : 2,
+	userName: "Alice",
 	recipes : [
 	 {
 	  recipeId: 21,
