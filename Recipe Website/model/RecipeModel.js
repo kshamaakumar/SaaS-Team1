@@ -42,6 +42,7 @@ var RecipeModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    // Has some error
     RecipeModel.prototype.retrieveTasksCount = function (response, filter) {
         var query = this.model.findOne(filter);
         query.exec(function (err, innerTaskList) {
@@ -58,6 +59,26 @@ var RecipeModel = /** @class */ (function () {
                     response.json('{count:' + innerTaskList.tasks.length + '}');
                 }
             }
+        });
+    };
+    RecipeModel.prototype.addRecipe = function (res, recipe, filter) {
+        var _this = this;
+        var query = this.model.findOne(filter);
+        query.exec(function (err, item) {
+            console.log("Session: %j", item);
+            var newRecipes = item.recipes;
+            //console.log(item);
+            newRecipes.push(recipe);
+            //console.log(recipe);
+            var insertQuery = _this.model.findOneAndUpdate(filter, { recipes: newRecipes }, {
+                "new": true
+            });
+            console.log();
+            insertQuery.exec(function (err, itemArray) {
+                console.log(err);
+                console.log("Session333333: %j", itemArray);
+                res.json(itemArray);
+            });
         });
     };
     return RecipeModel;
