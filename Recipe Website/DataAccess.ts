@@ -3,7 +3,7 @@ import Mongoose = require("mongoose");
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@127.0.0.1:3000/recipeWebsiteDatabase?authSource=admin';
+    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@127.0.0.1:27017/recipeWebsiteDatabase?authSource=admin';
     
     constructor () {
         DataAccess.connect();

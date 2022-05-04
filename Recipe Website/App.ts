@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import {RecipeListModel} from './model/RecipeListModel';
 import {RecipeModel} from './model/RecipeModel';
 import * as crypto from 'crypto';
 
@@ -8,6 +9,7 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
+  public RecipeLists:RecipeListModel;
   public Recipes:RecipeModel;
 
 
@@ -16,6 +18,7 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
+    this.RecipeLists = new RecipeListModel();
     this.Recipes = new RecipeModel();
   }
 
@@ -44,6 +47,10 @@ class App {
         this.Recipes.retrieveTasksDetails(res, {accountId: id});
     });
 
+    router.get('/app/recipes/', (req, res) => {
+      console.log('Query All list');
+      this.RecipeLists.retrieveAllLists(res);
+  });
 
 
 

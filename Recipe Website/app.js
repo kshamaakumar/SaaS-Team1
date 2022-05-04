@@ -3,6 +3,7 @@ exports.__esModule = true;
 exports.App = void 0;
 var express = require("express");
 var bodyParser = require("body-parser");
+var RecipeListModel_1 = require("./model/RecipeListModel");
 var RecipeModel_1 = require("./model/RecipeModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -11,6 +12,7 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
+        this.RecipeLists = new RecipeListModel_1.RecipeListModel();
         this.Recipes = new RecipeModel_1.RecipeModel();
     }
     // Configure Express middleware.
@@ -31,6 +33,10 @@ var App = /** @class */ (function () {
             var id = req.params.accountId;
             console.log('Query single list with accountId: ' + id);
             _this.Recipes.retrieveTasksDetails(res, { accountId: id });
+        });
+        router.get('/app/recipes/', function (req, res) {
+            console.log('Query All list');
+            _this.RecipeLists.retrieveAllLists(res);
         });
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
