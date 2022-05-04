@@ -35,11 +35,6 @@ class App {
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
-    router.get('/app/recipes/:accountId/count', (req, res) => {
-        var id = req.params.accountId;
-        console.log('Query single list with accountId: ' + id);
-        this.Recipes.retrieveTasksCount(res, {accountId: id});
-    });
 
     router.get('/app/recipes/:accountId', (req, res) => {  
         var id = req.params.accountId;
@@ -47,6 +42,15 @@ class App {
         this.Recipes.retrieveTasksDetails(res, {accountId: id});
     });
 
+
+    router.get('/app/recipes/:accountId/:recipeId', (req, res) => {  
+      var accountID = req.params.accountId;
+      var recipeID = req.params.recipeId;
+      console.log('Query single list with accountId:' + accountID + ' and recipeID:' + recipeID);
+      this.Recipes.retrieveRecipe(res, {accountId: accountID}, {recipeId: recipeID});
+    });
+
+    
     router.get('/app/recipes/', (req, res) => {
       console.log('Query All list');
       this.RecipeLists.retrieveAllLists(res);
@@ -57,6 +61,10 @@ class App {
       var id = req.params.accountId;
       this.Recipes.addRecipe(res, req.body, {accountId: id});
     });
+
+  
+
+
 
     this.expressApp.use('/', router);
     this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));

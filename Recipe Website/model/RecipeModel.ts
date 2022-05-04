@@ -20,6 +20,7 @@ class RecipeModel {
         this.schema = new Mongoose.Schema(
             {
                 accountId: Number,
+                userName: String,
                 recipes: [
                     {
                         recipeId: Number,
@@ -31,6 +32,13 @@ class RecipeModel {
         );
     }
     
+    public createModel(): void {
+        if (!this.modelAlreadyDeclared()){
+            this.model = mongooseConnection.model<IRecipeModel>("Recipes", this.schema);
+       }
+    }
+
+
     public modelAlreadyDeclared() {
         try {
           Mongoose.model('Recipes')  // it throws an error if the model is still not defined
@@ -40,16 +48,17 @@ class RecipeModel {
         }
       }
 
-    public createModel(): void {
-        if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IRecipeModel>("Recipes", this.schema);
-       }
-    }
-    
-    
     public retrieveTasksDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
+            response.json(itemArray);
+        });
+    }
+
+    public retrieveRecipe(response:any, accountId:Object, recipeId:Object) {
+        var query = this.model.findOne(accountId);
+        var recipe = query.recipes.findOne(recipeId)
+        recipe.exec( (err, itemArray) => {
             response.json(itemArray);
         });
     }
