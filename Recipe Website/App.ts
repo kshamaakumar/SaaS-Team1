@@ -52,8 +52,8 @@ class App {
       this.RecipeLists.retrieveAllLists(res);
     });
 
-    router.post('/app/recipes/:accountId', (req, res) => {
-      console.log(req.body);
+    router.post('/app/recipe/:accountId', (req, res) => {
+      console.log('Add recipe'+req.body.recipeName);
       var id = req.params.accountId;
       this.Recipes.addRecipe(res, req.body, {accountId: id});
     });
