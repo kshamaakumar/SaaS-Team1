@@ -39,7 +39,7 @@ class App {
     router.get('/app/recipes/:accountId', (req, res) => {  
         var id = req.params.accountId;
         console.log('Query single list with accountId: ' + id);
-        this.Recipes.retrieveTasksDetails(res, {accountId: id});
+        this.Recipes.retrieveRecipesDetails(res, {accountId: id});
     });
 
 
@@ -53,7 +53,7 @@ class App {
     
     router.get('/app/recipes/', (req, res) => {
       console.log('Query All list');
-      this.RecipeLists.retrieveAllLists(res);
+      this.RecipeLists.retrieveAllRecipes(res);
     });
 
     router.post('/app/recipe/:accountId', (req, res) => {

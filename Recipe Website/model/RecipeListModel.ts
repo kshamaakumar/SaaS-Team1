@@ -43,7 +43,7 @@ class RecipeListModel {
         }
     }
 
-    public retrieveAllLists(response:any): any {
+    public retrieveAllRecipes(response:any): any {
         var query = this.model.find({});
         query.exec( (err, itemArray) => {
             response.json(itemArray) ;

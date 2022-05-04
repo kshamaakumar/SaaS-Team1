@@ -48,7 +48,7 @@ class RecipeModel {
         }
       }
 
-    public retrieveTasksDetails(response:any, filter:Object) {
+    public retrieveRecipesDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray);
