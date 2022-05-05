@@ -39,7 +39,7 @@ class App {
     router.get('/app/recipes/:accountId', (req, res) => {  
         var id = req.params.accountId;
         console.log('Query single list with accountId: ' + id);
-        this.Recipes.retrieveRecipesDetails(res, {accountId: id});
+        this.Recipes.retrieveUserDetails(res, {accountId: id});
     });
 
 
