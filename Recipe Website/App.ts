@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {RecipeListModel} from './model/RecipeListModel';
-import {RecipeModel} from './model/RecipeModel';
+import {RecipeModel} from './model/UserModel';
 import * as crypto from 'crypto';
 
 // Creates and configures an ExpressJS web server.
