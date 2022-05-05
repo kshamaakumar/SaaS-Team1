@@ -5,8 +5,5 @@ interface IRecipeListModel extends Mongoose.Document {
     recipeName: string;
     description: string;
     listId: string;
-    due: string;
-    state: string;
-    owner: string;
 }
 export {IRecipeListModel};

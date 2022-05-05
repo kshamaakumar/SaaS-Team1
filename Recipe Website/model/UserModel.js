@@ -1,16 +1,16 @@
 "use strict";
 exports.__esModule = true;
-exports.RecipeModel = void 0;
+exports.UserModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
-var RecipeModel = /** @class */ (function () {
-    function RecipeModel() {
+var UserModel = /** @class */ (function () {
+    function UserModel() {
         this.createSchema();
         this.createModel();
     }
-    RecipeModel.prototype.createSchema = function () {
+    UserModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             accountId: Number,
             recipes: [
@@ -22,7 +22,7 @@ var RecipeModel = /** @class */ (function () {
             ]
         }, { collection: 'recipes' });
     };
-    RecipeModel.prototype.modelAlreadyDeclared = function () {
+    UserModel.prototype.modelAlreadyDeclared = function () {
         try {
             Mongoose.model('Recipes'); // it throws an error if the model is still not defined
             return true;
@@ -31,19 +31,19 @@ var RecipeModel = /** @class */ (function () {
             return false;
         }
     };
-    RecipeModel.prototype.createModel = function () {
+    UserModel.prototype.createModel = function () {
         if (!this.modelAlreadyDeclared()) {
             this.model = mongooseConnection.model("Recipes", this.schema);
         }
     };
-    RecipeModel.prototype.retrieveTasksDetails = function (response, filter) {
+    UserModel.prototype.retrieveTasksDetails = function (response, filter) {
         var query = this.model.findOne(filter);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
     // Has some error
-    RecipeModel.prototype.retrieveTasksCount = function (response, filter) {
+    UserModel.prototype.retrieveTasksCount = function (response, filter) {
         var query = this.model.findOne(filter);
         query.exec(function (err, innerTaskList) {
             if (err) {
@@ -61,7 +61,7 @@ var RecipeModel = /** @class */ (function () {
             }
         });
     };
-    RecipeModel.prototype.addRecipe = function (res, recipe, filter) {
+    UserModel.prototype.addRecipe = function (res, recipe, filter) {
         var _this = this;
         var query = this.model.findOne(filter);
         query.exec(function (err, item) {
@@ -81,6 +81,6 @@ var RecipeModel = /** @class */ (function () {
             });
         });
     };
-    return RecipeModel;
+    return UserModel;
 }());
-exports.RecipeModel = RecipeModel;
+exports.UserModel = UserModel;

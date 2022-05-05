@@ -1,6 +1,6 @@
 import Mongoose = require("mongoose");
 import {DataAccess} from '../DataAccess';
-import {IRecipeModel} from '../interfaces/IUserModel';
+import {IUserModel} from '../interfaces/IUserModel';
 import { STATUS_CODES } from "http";
 
 let mongooseConnection = DataAccess.mongooseConnection;
@@ -34,7 +34,7 @@ class UserModel {
     
     public createModel(): void {
         if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IRecipeModel>("Recipes", this.schema);
+            this.model = mongooseConnection.model<IUserModel>("Recipes", this.schema);
        }
     }
 
