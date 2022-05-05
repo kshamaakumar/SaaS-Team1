@@ -41,15 +41,6 @@ class App {
         console.log('Query single list with accountId: ' + id);
         this.Recipes.retrieveUserDetails(res, {accountId: id});
     });
-
-
-    router.get('/app/recipes/:accountId/:recipeId', (req, res) => {  
-      var accountID = req.params.accountId;
-      var recipeID = req.params.recipeId;
-      console.log('Query single list with accountId:' + accountID + ' and recipeID:' + recipeID);
-      this.Recipes.retrieveRecipe(res, {accountId: accountID}, {recipeId: recipeID});
-    });
-
     
     router.get('/app/recipes/', (req, res) => {
       console.log('Query All list');
