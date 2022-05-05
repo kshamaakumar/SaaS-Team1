@@ -48,7 +48,7 @@ class RecipeModel {
         }
       }
 
-    public retrieveRecipesDetails(response:any, filter:Object) {
+    public retrieveUserDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);
         query.exec( (err, itemArray) => {
             response.json(itemArray);
@@ -64,20 +64,20 @@ class RecipeModel {
     }
 
     // Has some error
-    public retrieveTasksCount(response:any, filter:Object) {
+    public retrieveRecipesCount(response:any, filter:Object) {
         var query = this.model.findOne(filter);
-        query.exec( (err, innerTaskList) => {
+        query.exec( (err, innerRecipeList) => {
             if (err) {
                 console.log('error retrieving count');
             }
             else {
-                if (innerTaskList == null) {
+                if (innerRecipeList == null) {
                     response.status(404);
                     response.json('{count: -1}');
                 }
                 else {
-                    console.log('number of tasks: ' + innerTaskList.tasks.length);
-                    response.json('{count:' + innerTaskList.tasks.length + '}');
+                    console.log('number of tasks: ' + innerRecipeList.recipes.length);
+                    response.json('{count:' + innerRecipeList.recipes.length + '}');
                 }
             }
         });
