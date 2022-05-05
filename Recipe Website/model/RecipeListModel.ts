@@ -21,9 +21,6 @@ class RecipeListModel {
                 recipeName: String,
                 description: String,
                 listId: String,
-                due: String,
-                state: String,
-                owner: String
             }, {collection: 'recipes'}
         );
     }
@@ -50,12 +47,12 @@ class RecipeListModel {
         });
     }
 
-    public retrieveListCount(response:any): any {
-        console.log("retrieve List Count ...");
+    public retrieveRecipeCount(response:any): any {
+        console.log("retrieve Recipe Count ...");
         var query = this.model.estimatedDocumentCount();
-        query.exec( (err, numberOfLists) => {
-            console.log("numberOfLists: " + numberOfLists);
-            response.json(numberOfLists) ;
+        query.exec( (err, numberOfRecipes) => {
+            console.log("numberOfRecipes: " + numberOfRecipes);
+            response.json(numberOfRecipes) ;
         });
     }
 
