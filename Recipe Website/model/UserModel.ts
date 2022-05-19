@@ -19,13 +19,11 @@ class UserModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                accountId: Number,
+                userId: Number,
                 userName: String,
                 recipes: [
                     {
                         recipeId: Number,
-                        recipeName: String,
-                        description: String
                     }        
                 ]
             }, {collection: 'recipes'}

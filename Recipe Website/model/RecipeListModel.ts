@@ -17,10 +17,9 @@ class RecipeListModel {
     public createSchema(): void {
         this.schema = new Mongoose.Schema(
             {
-                accountId: Number,
+                recipeId: Number,
                 recipeName: String,
                 description: String,
-                listId: String,
             }, {collection: 'recipes'}
         );
     }
