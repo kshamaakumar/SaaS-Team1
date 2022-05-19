@@ -36,14 +36,14 @@ class App {
   private routes(): void {
     let router = express.Router();
 
-    router.get('/app/recipes/:accountId', (req, res) => {  
-        var id = req.params.accountId;
-        console.log('Query single list with accountId: ' + id);
-        this.Recipes.retrieveUserDetails(res, {accountId: id});
+    router.get('/app/user/:userId', (req, res) => {  
+        var id = req.params.userId;
+        console.log('Query single user detail with userId: ' + id);
+        this.Recipes.retrieveUserDetails(res, {userId: id});
     });
     
-    router.get('/app/recipes/', (req, res) => {
-      console.log('Query All list');
+    router.get('/app/recipe/', (req, res) => {
+      console.log('Query All recipes');
       this.RecipeLists.retrieveAllRecipes(res);
     });
 
