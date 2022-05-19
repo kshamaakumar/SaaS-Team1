@@ -12,18 +12,15 @@ var RecipeListModel = /** @class */ (function () {
     }
     RecipeListModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            accountId: Number,
+            recipeId: Number,
             recipeName: String,
             description: String,
-            listId: String,
-            due: String,
-            state: String,
-            owner: String
+            userId: Number
         }, { collection: 'recipes' });
     };
     RecipeListModel.prototype.modelAlreadyDeclared = function () {
         try {
-            Mongoose.model('RecipeList'); // it throws an error if the model is still not defined
+            Mongoose.model('Recipe'); // it throws an error if the model is still not defined
             return true;
         }
         catch (e) {
@@ -32,21 +29,21 @@ var RecipeListModel = /** @class */ (function () {
     };
     RecipeListModel.prototype.createModel = function () {
         if (!this.modelAlreadyDeclared()) {
-            this.model = mongooseConnection.model("RecipeList", this.schema);
+            this.model = mongooseConnection.model("Recipe", this.schema);
         }
     };
-    RecipeListModel.prototype.retrieveAllLists = function (response) {
+    RecipeListModel.prototype.retrieveAllRecipes = function (response) {
         var query = this.model.find({});
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
-    RecipeListModel.prototype.retrieveListCount = function (response) {
-        console.log("retrieve List Count ...");
+    RecipeListModel.prototype.retrieveRecipeCount = function (response) {
+        console.log("retrieve Recipe Count ...");
         var query = this.model.estimatedDocumentCount();
-        query.exec(function (err, numberOfLists) {
-            console.log("numberOfLists: " + numberOfLists);
-            response.json(numberOfLists);
+        query.exec(function (err, numberOfRecipes) {
+            console.log("numberOfRecipes: " + numberOfRecipes);
+            response.json(numberOfRecipes);
         });
     };
     return RecipeListModel;

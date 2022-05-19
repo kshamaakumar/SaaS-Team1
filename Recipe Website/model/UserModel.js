@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.UserModel = void 0;
+exports.RecipeModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
@@ -12,51 +12,57 @@ var UserModel = /** @class */ (function () {
     }
     UserModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
-            accountId: Number,
+            userId: Number,
+            userName: String,
             recipes: [
                 {
-                    recipeId: Number,
-                    recipeName: String,
-                    description: String
+                    recipeId: Number
                 }
             ]
-        }, { collection: 'recipes' });
+        }, { collection: 'users' });
+    };
+    UserModel.prototype.createModel = function () {
+        if (!this.modelAlreadyDeclared()) {
+            this.model = mongooseConnection.model("User", this.schema);
+        }
     };
     UserModel.prototype.modelAlreadyDeclared = function () {
         try {
-            Mongoose.model('Recipes'); // it throws an error if the model is still not defined
+            Mongoose.model('Users'); // it throws an error if the model is still not defined
             return true;
         }
         catch (e) {
             return false;
         }
     };
-    UserModel.prototype.createModel = function () {
-        if (!this.modelAlreadyDeclared()) {
-            this.model = mongooseConnection.model("Recipes", this.schema);
-        }
-    };
-    UserModel.prototype.retrieveTasksDetails = function (response, filter) {
+    UserModel.prototype.retrieveUserDetails = function (response, filter) {
         var query = this.model.findOne(filter);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
+    UserModel.prototype.retrieveRecipe = function (response, accountId, recipeId) {
+        var query = this.model.findOne(accountId);
+        var recipe = query.recipes.findOne(recipeId);
+        recipe.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     // Has some error
-    UserModel.prototype.retrieveTasksCount = function (response, filter) {
+    UserModel.prototype.retrieveRecipesCount = function (response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, innerTaskList) {
+        query.exec(function (err, innerRecipeList) {
             if (err) {
                 console.log('error retrieving count');
             }
             else {
-                if (innerTaskList == null) {
+                if (innerRecipeList == null) {
                     response.status(404);
                     response.json('{count: -1}');
                 }
                 else {
-                    console.log('number of tasks: ' + innerTaskList.tasks.length);
-                    response.json('{count:' + innerTaskList.tasks.length + '}');
+                    console.log('number of tasks: ' + innerRecipeList.recipes.length);
+                    response.json('{count:' + innerRecipeList.recipes.length + '}');
                 }
             }
         });
@@ -67,20 +73,18 @@ var UserModel = /** @class */ (function () {
         query.exec(function (err, item) {
             console.log("Session: %j", item);
             var newRecipes = item.recipes;
-            //console.log(item);
             newRecipes.push(recipe);
-            //console.log(recipe);
             var insertQuery = _this.model.findOneAndUpdate(filter, { recipes: newRecipes }, {
                 "new": true
             });
             console.log();
             insertQuery.exec(function (err, itemArray) {
                 console.log(err);
-                console.log("Session333333: %j", itemArray);
+                console.log("Updated document: %j", itemArray);
                 res.json(itemArray);
             });
         });
     };
     return UserModel;
 }());
-exports.UserModel = UserModel;
+exports.RecipeModel = UserModel;

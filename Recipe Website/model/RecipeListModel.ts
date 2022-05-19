@@ -20,13 +20,14 @@ class RecipeListModel {
                 recipeId: Number,
                 recipeName: String,
                 description: String,
+                userId: Number,
             }, {collection: 'recipes'}
         );
     }
 
     public modelAlreadyDeclared() {
         try {
-          Mongoose.model('RecipeList')  // it throws an error if the model is still not defined
+          Mongoose.model('Recipe')  // it throws an error if the model is still not defined
           return true
         } catch (e) {
           return false
@@ -35,7 +36,7 @@ class RecipeListModel {
 
     public createModel(): void {
         if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IRecipeListModel>("RecipeList", this.schema);
+            this.model = mongooseConnection.model<IRecipeListModel>("Recipe", this.schema);
         }
     }
 

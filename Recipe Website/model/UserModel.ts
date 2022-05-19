@@ -26,20 +26,20 @@ class UserModel {
                         recipeId: Number,
                     }        
                 ]
-            }, {collection: 'recipes'}
+            }, {collection: 'users'}
         );
     }
     
     public createModel(): void {
         if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IUserModel>("Recipes", this.schema);
+            this.model = mongooseConnection.model<IUserModel>("User", this.schema);
        }
     }
 
 
     public modelAlreadyDeclared() {
         try {
-          Mongoose.model('Recipes')  // it throws an error if the model is still not defined
+          Mongoose.model('Users')  // it throws an error if the model is still not defined
           return true
         } catch (e) {
           return false
