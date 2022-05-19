@@ -2,12 +2,10 @@ import Mongoose = require("mongoose");
 
 
 interface IUserModel extends Mongoose.Document {
-    accountId: number;
+    userId: number;
     userName: string;
     recipes: [ {
-        accountId: number;
-        recipeName: string;
-        description: string;
+        recipeId: number;
     }];
 }
 export {IUserModel};
