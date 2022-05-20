@@ -9,7 +9,7 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public RecipeLists:RecipeModel;
+  public Recipes:RecipeModel;
   public Users:UserModel;
 
 
@@ -18,7 +18,7 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.RecipeLists = new RecipeModel();
+    this.Recipes = new RecipeModel();
     this.Users = new UserModel();
   }
 
@@ -42,9 +42,20 @@ class App {
         this.Users.retrieveUserDetails(res, {userId: id});
     });
     
+    router.get('/app/user/', (req, res) => {
+      console.log('Query All Users');
+      this.Users.retrieveAllUsers(res);
+    });
+
+    router.get('/app/recipe/:recipeId', (req, res) => {  
+      var id = req.params.recipeId;
+      console.log('Query single recipe detail with recipeId: ' + id);
+      this.Recipes.retrieveRecipeDetails(res, {recipeId: id});
+    });
+
     router.get('/app/recipe/', (req, res) => {
-      console.log('Query All recipes');
-      this.RecipeLists.retrieveAllRecipes(res);
+      console.log('Query All Recipes');
+      this.Recipes.retrieveAllRecipes(res);
     });
 
     /*

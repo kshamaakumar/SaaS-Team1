@@ -12,7 +12,7 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
-        this.RecipeLists = new RecipeModel_1.RecipeModel();
+        this.Recipes = new RecipeModel_1.RecipeModel();
         this.Users = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
@@ -29,9 +29,18 @@ var App = /** @class */ (function () {
             console.log('Query single user detail with userId: ' + id);
             _this.Users.retrieveUserDetails(res, { userId: id });
         });
+        router.get('/app/user/', function (req, res) {
+            console.log('Query All Users');
+            _this.Users.retrieveAllUsers(res);
+        });
+        router.get('/app/recipe/:recipeId', function (req, res) {
+            var id = req.params.recipeId;
+            console.log('Query single recipe detail with recipeId: ' + id);
+            _this.Recipes.retrieveRecipeDetails(res, { recipeId: id });
+        });
         router.get('/app/recipe/', function (req, res) {
-            console.log('Query All recipes');
-            _this.RecipeLists.retrieveAllRecipes(res);
+            console.log('Query All Recipes');
+            _this.Recipes.retrieveAllRecipes(res);
         });
         /*
         router.post('/app/recipe/:accountId', (req, res) => {

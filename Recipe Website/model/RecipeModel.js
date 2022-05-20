@@ -21,18 +21,16 @@ var RecipeModel = /** @class */ (function () {
     RecipeModel.prototype.createModel = function () {
         this.model = mongooseConnection.model("Recipe", this.schema);
     };
-    RecipeModel.prototype.retrieveAllRecipes = function (response) {
-        var query = this.model.find({});
+    RecipeModel.prototype.retrieveRecipeDetails = function (response, filter) {
+        var query = this.model.findOne(filter);
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
-    RecipeModel.prototype.retrieveRecipeCount = function (response) {
-        console.log("retrieve Recipe Count ...");
-        var query = this.model.estimatedDocumentCount();
-        query.exec(function (err, numberOfRecipes) {
-            console.log("numberOfRecipes: " + numberOfRecipes);
-            response.json(numberOfRecipes);
+    RecipeModel.prototype.retrieveAllRecipes = function (response) {
+        var query = this.model.find({});
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
         });
     };
     return RecipeModel;

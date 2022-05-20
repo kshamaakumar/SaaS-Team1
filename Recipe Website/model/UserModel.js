@@ -30,48 +30,10 @@ var UserModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
-    UserModel.prototype.retrieveRecipe = function (response, accountId, recipeId) {
-        var query = this.model.findOne(accountId);
-        var recipe = query.recipes.findOne(recipeId);
-        recipe.exec(function (err, itemArray) {
+    UserModel.prototype.retrieveAllUsers = function (response) {
+        var query = this.model.find({});
+        query.exec(function (err, itemArray) {
             response.json(itemArray);
-        });
-    };
-    // Has some error
-    UserModel.prototype.retrieveRecipesCount = function (response, filter) {
-        var query = this.model.findOne(filter);
-        query.exec(function (err, innerRecipeList) {
-            if (err) {
-                console.log('error retrieving count');
-            }
-            else {
-                if (innerRecipeList == null) {
-                    response.status(404);
-                    response.json('{count: -1}');
-                }
-                else {
-                    console.log('number of tasks: ' + innerRecipeList.recipes.length);
-                    response.json('{count:' + innerRecipeList.recipes.length + '}');
-                }
-            }
-        });
-    };
-    UserModel.prototype.addRecipe = function (res, recipe, filter) {
-        var _this = this;
-        var query = this.model.findOne(filter);
-        query.exec(function (err, item) {
-            console.log("Session: %j", item);
-            var newRecipes = item.recipes;
-            newRecipes.push(recipe);
-            var insertQuery = _this.model.findOneAndUpdate(filter, { recipes: newRecipes }, {
-                "new": true
-            });
-            console.log();
-            insertQuery.exec(function (err, itemArray) {
-                console.log(err);
-                console.log("Updated document: %j", itemArray);
-                res.json(itemArray);
-            });
         });
     };
     return UserModel;

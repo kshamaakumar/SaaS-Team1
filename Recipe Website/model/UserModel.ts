@@ -42,51 +42,23 @@ class UserModel {
         });
     }
 
-    public retrieveRecipe(response:any, accountId:Object, recipeId:Object) {
-        var query = this.model.findOne(accountId);
-        var recipe = query.recipes.findOne(recipeId)
-        recipe.exec( (err, itemArray) => {
-            response.json(itemArray);
+    public retrieveAllUsers(response:any): any {
+        var query = this.model.find({});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray) ;
         });
     }
 
-    // Has some error
-    public retrieveRecipesCount(response:any, filter:Object) {
-        var query = this.model.findOne(filter);
-        query.exec( (err, innerRecipeList) => {
-            if (err) {
-                console.log('error retrieving count');
-            }
-            else {
-                if (innerRecipeList == null) {
-                    response.status(404);
-                    response.json('{count: -1}');
-                }
-                else {
-                    console.log('number of tasks: ' + innerRecipeList.recipes.length);
-                    response.json('{count:' + innerRecipeList.recipes.length + '}');
-                }
-            }
+/*
+    public retrieveRecipeCount(response:any): any {
+        console.log("retrieve Recipe Count ...");
+        var query = this.model.estimatedDocumentCount();
+        query.exec( (err, numberOfRecipes) => {
+            console.log("numberOfRecipes: " + numberOfRecipes);
+            response.json(numberOfRecipes) ;
         });
     }
+*/
 
-    public addRecipe(res: any, recipe: Object, filter: Object) {
-        var query = this.model.findOne(filter);
-        query.exec( (err, item) => {
-            console.log("Session: %j",item);
-            var newRecipes = item.recipes;
-            newRecipes.push(recipe);
-            var insertQuery = this.model.findOneAndUpdate(filter, {recipes:newRecipes}, {
-                new: true
-            });
-            console.log();
-            insertQuery.exec( (err, itemArray) => {
-                console.log(err);
-                console.log("Updated document: %j",itemArray);
-                res.json(itemArray);
-
-            });
-        });
-    }
 }
 export {UserModel};
