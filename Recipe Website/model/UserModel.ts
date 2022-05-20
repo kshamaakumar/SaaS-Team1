@@ -31,20 +31,9 @@ class UserModel {
     }
     
     public createModel(): void {
-        if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IUserModel>("User", this.schema);
-       }
+        this.model = mongooseConnection.model<IUserModel>("User", this.schema);
     }
 
-
-    public modelAlreadyDeclared() {
-        try {
-          Mongoose.model('Users')  // it throws an error if the model is still not defined
-          return true
-        } catch (e) {
-          return false
-        }
-      }
 
     public retrieveUserDetails(response:any, filter:Object) {
         var query = this.model.findOne(filter);

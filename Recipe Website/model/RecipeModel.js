@@ -18,19 +18,8 @@ var RecipeModel = /** @class */ (function () {
             userId: Number
         }, { collection: 'recipes' });
     };
-    RecipeModel.prototype.modelAlreadyDeclared = function () {
-        try {
-            Mongoose.model('Recipe'); // it throws an error if the model is still not defined
-            return true;
-        }
-        catch (e) {
-            return false;
-        }
-    };
     RecipeModel.prototype.createModel = function () {
-        if (!this.modelAlreadyDeclared()) {
-            this.model = mongooseConnection.model("Recipe", this.schema);
-        }
+        this.model = mongooseConnection.model("Recipe", this.schema);
     };
     RecipeModel.prototype.retrieveAllRecipes = function (response) {
         var query = this.model.find({});

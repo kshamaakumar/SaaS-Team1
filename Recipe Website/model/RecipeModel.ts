@@ -25,19 +25,9 @@ class RecipeModel {
         );
     }
 
-    public modelAlreadyDeclared() {
-        try {
-          Mongoose.model('Recipe')  // it throws an error if the model is still not defined
-          return true
-        } catch (e) {
-          return false
-        }
-      }
 
     public createModel(): void {
-        if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IRecipeModel>("Recipe", this.schema);
-        }
+        this.model = mongooseConnection.model<IRecipeModel>("Recipe", this.schema);
     }
 
     public retrieveAllRecipes(response:any): any {

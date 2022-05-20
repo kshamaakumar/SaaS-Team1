@@ -22,18 +22,7 @@ var UserModel = /** @class */ (function () {
         }, { collection: 'users' });
     };
     UserModel.prototype.createModel = function () {
-        if (!this.modelAlreadyDeclared()) {
-            this.model = mongooseConnection.model("User", this.schema);
-        }
-    };
-    UserModel.prototype.modelAlreadyDeclared = function () {
-        try {
-            Mongoose.model('Users'); // it throws an error if the model is still not defined
-            return true;
-        }
-        catch (e) {
-            return false;
-        }
+        this.model = mongooseConnection.model("User", this.schema);
     };
     UserModel.prototype.retrieveUserDetails = function (response, filter) {
         var query = this.model.findOne(filter);
