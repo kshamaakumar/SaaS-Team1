@@ -13,9 +13,13 @@ var RecipeModel = /** @class */ (function () {
     RecipeModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             recipeId: Number,
+            userId: Number,
             recipeName: String,
+            ingredients: [],
             description: String,
-            userId: Number
+            calorie: Number,
+            cookTime: Number,
+            author: String
         }, { collection: 'recipes' });
     };
     RecipeModel.prototype.createModel = function () {

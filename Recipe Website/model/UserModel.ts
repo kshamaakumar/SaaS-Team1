@@ -21,11 +21,18 @@ class UserModel {
             {
                 userId: Number,
                 userName: String,
+                followers:  Number,
+                following: Number,
+                likes: Number,
                 recipes: [
                     {
                         recipeId: Number,
                     }        
-                ]
+                ],
+                ingredients: [ {
+                    ingId: Number,
+                    ingredient: String,
+                }]
             }, {collection: 'users'}
         );
     }

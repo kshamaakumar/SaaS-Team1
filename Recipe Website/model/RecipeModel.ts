@@ -18,9 +18,13 @@ class RecipeModel {
         this.schema = new Mongoose.Schema(
             {
                 recipeId: Number,
-                recipeName: String,
-                description: String,
                 userId: Number,
+                recipeName: String,
+                ingredients: [],
+                description: String,
+                calorie: Number,
+                cookTime: Number,
+                author: String,
             }, {collection: 'recipes'}
         );
     }
