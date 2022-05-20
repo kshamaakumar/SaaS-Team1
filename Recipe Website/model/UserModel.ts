@@ -100,4 +100,4 @@ class UserModel {
         });
     }
 }
-export {UserModel as RecipeModel};
+export {UserModel};

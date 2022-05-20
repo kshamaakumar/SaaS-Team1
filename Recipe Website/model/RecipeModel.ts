@@ -1,11 +1,11 @@
 import Mongoose = require("mongoose");
-import {DataAccess} from './../DataAccess';
-import {IRecipeListModel} from '../interfaces/IRecipeListModel';
+import {DataAccess} from '../DataAccess';
+import {IRecipeModel} from '../interfaces/IRecipeModel';
 
 let mongooseConnection = DataAccess.mongooseConnection;
 let mongooseObj = DataAccess.mongooseInstance;
 
-class RecipeListModel {
+class RecipeModel {
     public schema:any;
     public model:any;
 
@@ -36,7 +36,7 @@ class RecipeListModel {
 
     public createModel(): void {
         if (!this.modelAlreadyDeclared()){
-            this.model = mongooseConnection.model<IRecipeListModel>("Recipe", this.schema);
+            this.model = mongooseConnection.model<IRecipeModel>("Recipe", this.schema);
         }
     }
 
@@ -57,4 +57,4 @@ class RecipeListModel {
     }
 
 }
-export {RecipeListModel};
+export {RecipeModel};

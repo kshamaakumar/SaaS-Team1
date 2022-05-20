@@ -1,9 +1,9 @@
 import Mongoose = require("mongoose");
 
-interface IRecipeListModel extends Mongoose.Document {
+interface IRecipeModel extends Mongoose.Document {
     recipeId: number;
     recipeName: string;
     description: string;
     userId: number;
 }
-export {IRecipeListModel};
+export {IRecipeModel};

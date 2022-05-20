@@ -3,7 +3,7 @@ exports.__esModule = true;
 exports.App = void 0;
 var express = require("express");
 var bodyParser = require("body-parser");
-var RecipeListModel_1 = require("./model/RecipeListModel");
+var RecipeModel_1 = require("./model/RecipeModel");
 var UserModel_1 = require("./model/UserModel");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
@@ -12,8 +12,8 @@ var App = /** @class */ (function () {
         this.expressApp = express();
         this.middleware();
         this.routes();
-        this.RecipeLists = new RecipeListModel_1.RecipeListModel();
-        this.Recipes = new UserModel_1.RecipeModel();
+        this.RecipeLists = new RecipeModel_1.RecipeModel();
+        this.Users = new UserModel_1.UserModel();
     }
     // Configure Express middleware.
     App.prototype.middleware = function () {
@@ -27,7 +27,7 @@ var App = /** @class */ (function () {
         router.get('/app/user/:userId', function (req, res) {
             var id = req.params.userId;
             console.log('Query single user detail with userId: ' + id);
-            _this.Recipes.retrieveUserDetails(res, { userId: id });
+            _this.Users.retrieveUserDetails(res, { userId: id });
         });
         router.get('/app/recipe/', function (req, res) {
             console.log('Query All recipes');

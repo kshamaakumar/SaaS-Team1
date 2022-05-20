@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.RecipeModel = void 0;
+exports.UserModel = void 0;
 var Mongoose = require("mongoose");
 var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
@@ -87,4 +87,4 @@ var UserModel = /** @class */ (function () {
     };
     return UserModel;
 }());
-exports.RecipeModel = UserModel;
+exports.UserModel = UserModel;

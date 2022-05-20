@@ -1,16 +1,16 @@
 "use strict";
 exports.__esModule = true;
-exports.RecipeListModel = void 0;
+exports.RecipeModel = void 0;
 var Mongoose = require("mongoose");
-var DataAccess_1 = require("./../DataAccess");
+var DataAccess_1 = require("../DataAccess");
 var mongooseConnection = DataAccess_1.DataAccess.mongooseConnection;
 var mongooseObj = DataAccess_1.DataAccess.mongooseInstance;
-var RecipeListModel = /** @class */ (function () {
-    function RecipeListModel() {
+var RecipeModel = /** @class */ (function () {
+    function RecipeModel() {
         this.createSchema();
         this.createModel();
     }
-    RecipeListModel.prototype.createSchema = function () {
+    RecipeModel.prototype.createSchema = function () {
         this.schema = new Mongoose.Schema({
             recipeId: Number,
             recipeName: String,
@@ -18,7 +18,7 @@ var RecipeListModel = /** @class */ (function () {
             userId: Number
         }, { collection: 'recipes' });
     };
-    RecipeListModel.prototype.modelAlreadyDeclared = function () {
+    RecipeModel.prototype.modelAlreadyDeclared = function () {
         try {
             Mongoose.model('Recipe'); // it throws an error if the model is still not defined
             return true;
@@ -27,18 +27,18 @@ var RecipeListModel = /** @class */ (function () {
             return false;
         }
     };
-    RecipeListModel.prototype.createModel = function () {
+    RecipeModel.prototype.createModel = function () {
         if (!this.modelAlreadyDeclared()) {
             this.model = mongooseConnection.model("Recipe", this.schema);
         }
     };
-    RecipeListModel.prototype.retrieveAllRecipes = function (response) {
+    RecipeModel.prototype.retrieveAllRecipes = function (response) {
         var query = this.model.find({});
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });
     };
-    RecipeListModel.prototype.retrieveRecipeCount = function (response) {
+    RecipeModel.prototype.retrieveRecipeCount = function (response) {
         console.log("retrieve Recipe Count ...");
         var query = this.model.estimatedDocumentCount();
         query.exec(function (err, numberOfRecipes) {
@@ -46,6 +46,6 @@ var RecipeListModel = /** @class */ (function () {
             response.json(numberOfRecipes);
         });
     };
-    return RecipeListModel;
+    return RecipeModel;
 }());
-exports.RecipeListModel = RecipeListModel;
+exports.RecipeModel = RecipeModel;

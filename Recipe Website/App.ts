@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {RecipeListModel} from './model/RecipeListModel';
-import {RecipeModel} from './model/UserModel';
+import {RecipeModel} from './model/RecipeModel';
+import {UserModel} from './model/UserModel';
 import * as crypto from 'crypto';
 
 // Creates and configures an ExpressJS web server.
@@ -9,8 +9,8 @@ class App {
 
   // ref to Express instance
   public expressApp: express.Application;
-  public RecipeLists:RecipeListModel;
-  public Recipes:RecipeModel;
+  public RecipeLists:RecipeModel;
+  public Users:UserModel;
 
 
   //Run configuration methods on the Express instance.
@@ -18,8 +18,8 @@ class App {
     this.expressApp = express();
     this.middleware();
     this.routes();
-    this.RecipeLists = new RecipeListModel();
-    this.Recipes = new RecipeModel();
+    this.RecipeLists = new RecipeModel();
+    this.Users = new UserModel();
   }
 
 
@@ -39,7 +39,7 @@ class App {
     router.get('/app/user/:userId', (req, res) => {  
         var id = req.params.userId;
         console.log('Query single user detail with userId: ' + id);
-        this.Recipes.retrieveUserDetails(res, {userId: id});
+        this.Users.retrieveUserDetails(res, {userId: id});
     });
     
     router.get('/app/recipe/', (req, res) => {
@@ -54,10 +54,6 @@ class App {
       this.Recipes.addRecipe(res, req.body, {accountId: id});
     });
     */
-
-  
-
-
 
     this.expressApp.use('/', router);
     this.expressApp.use('/app/json/', express.static(__dirname+'/app/json'));
