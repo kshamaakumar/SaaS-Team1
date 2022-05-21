@@ -7,7 +7,7 @@ interface IRecipeModel extends Mongoose.Document {
     ingredients:[];
     description: string;
     calorie:number;
-    cookTime: number;
+    cookTime: string;
     author: string;
 }
 export {IRecipeModel};

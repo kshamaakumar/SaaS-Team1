@@ -22,7 +22,7 @@ var UserModel = /** @class */ (function () {
                     recipeId: Number
                 }
             ],
-            ingredients: [{
+            ingredientList: [{
                     ingId: Number,
                     ingredient: String
                 }]

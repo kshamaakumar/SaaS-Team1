@@ -29,7 +29,7 @@ class UserModel {
                         recipeId: Number,
                     }        
                 ],
-                ingredients: [ {
+                ingredientList: [ {
                     ingId: Number,
                     ingredient: String,
                 }]

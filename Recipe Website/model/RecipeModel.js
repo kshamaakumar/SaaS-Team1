@@ -18,7 +18,7 @@ var RecipeModel = /** @class */ (function () {
             ingredients: [],
             description: String,
             calorie: Number,
-            cookTime: Number,
+            cookTime: String,
             author: String
         }, { collection: 'recipes' });
     };

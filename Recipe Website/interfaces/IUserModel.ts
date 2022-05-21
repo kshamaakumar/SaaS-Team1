@@ -10,7 +10,7 @@ interface IUserModel extends Mongoose.Document {
     recipes: [ {
         recipeId: number;
     }];
-    ingredients: [ {
+    ingredientList: [ {
         ingId: number;
         ingredient: string;
     }];
