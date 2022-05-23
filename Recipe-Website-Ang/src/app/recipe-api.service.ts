@@ -15,4 +15,8 @@ export class RecipeApiService {
   getRecipes(){
     return this.http.get<RecipeClass[]>(this.hostUrl + 'app/recipe/');
   }
+
+  getRecipesByUser(id:number){
+    return this.http.get<RecipeClass[]>(this.hostUrl + 'app/recipeuser/' + id);
+  }
 }

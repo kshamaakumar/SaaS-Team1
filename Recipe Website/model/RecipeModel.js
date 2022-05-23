@@ -37,6 +37,13 @@ var RecipeModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    RecipeModel.prototype.retrieveRecipeByUserId = function (response, user) {
+        var query = this.model.find({ userId: user });
+        //var query = this.model.find({});
+        query.exec(function (err, itemArray) {
+            response.json(itemArray);
+        });
+    };
     return RecipeModel;
 }());
 exports.RecipeModel = RecipeModel;

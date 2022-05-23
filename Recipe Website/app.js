@@ -43,6 +43,11 @@ var App = /** @class */ (function () {
             console.log('Query All Recipes');
             _this.Recipes.retrieveAllRecipes(res);
         });
+        router.get('/app/recipeuser/:userId', function (req, res) {
+            var id = req.params.userId;
+            console.log('Query recipes with userId: ' + id);
+            _this.Recipes.retrieveRecipeByUserId(res, id);
+        });
         /*
         router.post('/app/recipe/:accountId', (req, res) => {
           console.log('Add recipe'+req.body.recipeName);

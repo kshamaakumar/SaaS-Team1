@@ -47,6 +47,14 @@ class RecipeModel {
             response.json(itemArray) ;
         });
     }
+
+    public retrieveRecipeByUserId(response:any, user:String) {
+        var query = this.model.find({userId: user});
+        query.exec( (err, itemArray) => {
+            response.json(itemArray);
+        });
+    }
+
     /*
     public addRecipe(res: any, recipe: Object, filter: Object) {
         var query = this.model.findOne(filter);

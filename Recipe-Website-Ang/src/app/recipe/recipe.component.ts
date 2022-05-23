@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeApiService } from "../recipe-api.service"
 import { RecipeClass } from '../recipe-class';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-recipe',
@@ -9,12 +10,14 @@ import { RecipeClass } from '../recipe-class';
 })
 export class RecipeComponent implements OnInit {
 
+  userId: number = 0;
   results: Array<RecipeClass> = [];
 
-  constructor(private apiService: RecipeApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: RecipeApiService) { }
 
   ngOnInit(): void {
-    this.apiService.getRecipes().subscribe((result:RecipeClass[]) =>{
+    this.userId = 1;
+    this.apiService.getRecipesByUser(this.userId).subscribe((result:RecipeClass[]) =>{
       this.results = result;
       console.log('Recipes are:' + JSON.stringify(result));
     });
