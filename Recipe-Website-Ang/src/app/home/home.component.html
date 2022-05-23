@@ -1,12 +1,10 @@
 <!-- <app-search></app-search> -->
-<div class="panel panel-default" 
+<div class="Foodlist" 
   *ngFor="let data of results; let i = index">
   <!-- Default panel contents -->
-  <a><img [src]="data.imageUrl" [alt]="data.recipeName" /></a>
+  <a href="http://localhost:4200/food-page"><img [src]="data.imageUrl" [alt]="data.recipeName" width="300" height="300"/></a>
   <h4 class="panel-heading"><a>{{data.recipeName}}</a></h4>
   <div class="panel-body">
-  <p>Cook time {{data.cookTime}}</p>
-  <p>Calories:{{data.calorie}}</p>
 </div>
   
 
