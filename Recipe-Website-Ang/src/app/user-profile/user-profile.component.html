@@ -1,9 +1,14 @@
-
-
-
-<h4 class="panel-heading"><a>User Name: {{userProfileInfo.userName}}</a></h4>
-<h4 class="panel-heading"><a>Followers: {{userProfileInfo.followers}}</a></h4>
-<h4 class="panel-heading"><a>Following: {{userProfileInfo.following}}</a></h4>
-<h4 class="panel-heading"><a>Following: {{userProfileInfo.following}}</a></h4>
-<h4 class="panel-heading"><a>Likes: {{userProfileInfo.likes}}</a></h4>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="card">
+    <img src="/assets/images/loading.svg" alt="">
+    <h2>User Name: {{userProfileInfo.userName}}</h2>
+    <p>Followers: {{userProfileInfo.followers}}</p>
+    <p>Following: {{userProfileInfo.following}}<p>
+    <p>Following: {{userProfileInfo.following}}</p>
+    <p>Likes: {{userProfileInfo.likes}}</p>
+    <a href="#"><i class="fa fa-dribbble"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+</div>
 <a routerLink="/user_recipes/1" routerLinkActive = "active">My Recipes</a>
