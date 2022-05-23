@@ -3,11 +3,11 @@ import { RecipeApiService } from "../recipe-api.service"
 import { RecipeClass } from '../recipe-class';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-food-page',
+  templateUrl: './food-page.component.html',
+  styleUrls: ['./food-page.component.css']
 })
-export class HomeComponent implements OnInit {
+export class FoodPageComponent implements OnInit {
   results: Array<RecipeClass> = [];
 
   constructor(private apiService: RecipeApiService) { }
@@ -19,4 +19,5 @@ export class HomeComponent implements OnInit {
       console.log('Recipes are:' + JSON.stringify(result));
     });
   }
+
 }

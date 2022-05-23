@@ -9,5 +9,6 @@ interface IRecipeModel extends Mongoose.Document {
     calorie:number;
     cookTime: string;
     author: string;
+    imageUrl: string;
 }
 export {IRecipeModel};

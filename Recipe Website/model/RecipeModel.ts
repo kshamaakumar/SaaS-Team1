@@ -25,6 +25,7 @@ class RecipeModel {
                 calorie: Number,
                 cookTime: String,
                 author: String,
+                imageUrl: String,
             }, {collection: 'recipes'}
         );
     }

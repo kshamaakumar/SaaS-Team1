@@ -1,4 +1,23 @@
-<div>
-    <input #s type="text" placeholder="Search Food Mine!"/>"
-    <button>Search</button>
-  </div>
+<!-- <app-search></app-search> -->
+<div class="panel panel-default" 
+  *ngFor="let data of results; let i = index">
+  <!-- Default panel contents -->
+  <a><img [src]="data.imageUrl" [alt]="data.recipeName" /></a>
+  <h4 class="panel-heading"><a>{{data.recipeName}}</a></h4>
+  <div class="panel-body">
+  <p>Cook time {{data.cookTime}}</p>
+  <p>Calories:{{data.calorie}}</p>
+</div>
+  
+
+  <!-- 
+  <table class="table" style="font-size:10pt;">
+    <tbody>
+      <tr>
+        <td>Due: <span>{{list.due}}</span></td>
+        <td align="right">Items: <span class="badge">{{list.items}}</span></td>
+      </tr>
+    </tbody>
+  </table>
+-->
+</div>

@@ -7,4 +7,5 @@ export interface RecipeClass {
     calorie:number;
     cookTime: string;
     author: string;
+    imageUrl: string;
 }

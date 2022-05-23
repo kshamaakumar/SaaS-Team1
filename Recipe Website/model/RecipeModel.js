@@ -19,7 +19,8 @@ var RecipeModel = /** @class */ (function () {
             description: String,
             calorie: Number,
             cookTime: String,
-            author: String
+            author: String,
+            imageUrl: String
         }, { collection: 'recipes' });
     };
     RecipeModel.prototype.createModel = function () {
@@ -37,9 +38,28 @@ var RecipeModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
+    RecipeModel.prototype.createRecipe = function (response, recipe) {
+        var _this = this;
+        var query = this.model.find({}).sort('-recipeId').limit(1);
+        query.exec(function (err, item) {
+            console.log('error received:' + err);
+            var itemString = JSON.stringify(item);
+            var itemStringJson = JSON.parse(itemString);
+            var maxRecipeId = itemStringJson[0].recipeId;
+            console.log('query fetched recipe id: %s', maxRecipeId);
+            var recipeJson = JSON.parse(recipe);
+            recipeJson.recipeId = maxRecipeId + 1;
+            console.log('new recipeID ' + recipeJson.recipeId);
+            _this.model.create([recipeJson], function (err) {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            response.send('{"id":"' + recipeJson.recipeId + '"}');
+        });
+    };
     RecipeModel.prototype.retrieveRecipeByUserId = function (response, user) {
         var query = this.model.find({ userId: user });
-        //var query = this.model.find({});
         query.exec(function (err, itemArray) {
             response.json(itemArray);
         });

@@ -5,7 +5,6 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var RecipeModel_1 = require("./model/RecipeModel");
 var UserModel_1 = require("./model/UserModel");
-var crypto = require("crypto");
 // Creates and configures an ExpressJS web server.
 var App = /** @class */ (function () {
     //Run configuration methods on the Express instance.
@@ -57,16 +56,11 @@ var App = /** @class */ (function () {
         */
         //API to add a new Recipe
         router.post('/app/recipe/:accountId', function (req, res) {
-            var id = crypto.randomBytes(16).toString("hex");
+            //const id = crypto.randomBytes(16).toString("hex");
             console.log(req.body);
             var jsonObj = req.body;
-            jsonObj.listId = id;
-            _this.Recipes.model.create([jsonObj], function (err) {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send('{"id":"' + id + '"}');
+            jsonObj.userId = req.params.accountId;
+            _this.Recipes.createRecipe(res, JSON.stringify(jsonObj));
         });
         var cors = require('cors');
         this.expressApp.use(cors({
