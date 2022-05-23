@@ -49,6 +49,11 @@ var App = /** @class */ (function () {
           this.Recipes.addRecipe(res, req.body, {accountId: id});
         });
         */
+        var cors = require('cors');
+        this.expressApp.use(cors({
+            origin: '*',
+            methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+        }));
         this.expressApp.use('/', router);
         this.expressApp.use('/app/json/', express.static(__dirname + '/app/json'));
         this.expressApp.use('/images', express.static(__dirname + '/img'));
