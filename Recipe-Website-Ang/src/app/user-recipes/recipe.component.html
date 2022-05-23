@@ -2,20 +2,30 @@
   
 <div class="panel panel-default"
 *ngFor="let data of results; let i = index">
+<img src="/assets/images/food-2.jpg" alt=""/>
   <!-- Default panel contents -->
-  <h4 class="panel-heading"><a>{{data.recipeName}}</a></h4>
-  <div class="panel-body">
-  <p>{{data.description}}</p>
-  </div>
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        Name: {{data.recipeName}}
+      </span>
+    </div>
+    <div class="description">
+      <span>
+        Steps: {{data.description}}
+      </span>
+    </div>
 
-  <!-- 
-  <table class="table" style="font-size:10pt;">
-    <tbody>
-      <tr>
-        <td>Due: <span>{{list.due}}</span></td>
-        <td align="right">Items: <span class="badge">{{list.items}}</span></td>
-      </tr>
-    </tbody>
-  </table>
--->
+    <div class="Calories">
+      <span>
+        Calorie count:{{data.calorie}}
+      </span>
+    </div>
+
+    <div class="cook-time">
+      <span>
+        Time to cook: <strong>{{data.cookTime}}</strong>
+      </span>
+    </div>
+  </div>
 </div>
