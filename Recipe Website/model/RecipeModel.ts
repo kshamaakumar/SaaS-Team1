@@ -48,6 +48,27 @@ class RecipeModel {
         });
     }
 
+    public createRecipe(response:any, recipe:string){
+        var query = this.model.find({}).sort('-recipeId').limit(1);
+        query.exec( (err, item) => {
+            console.log('error received:'+err);
+            var itemString=JSON.stringify(item);
+            var itemStringJson=JSON.parse(itemString);
+            const maxRecipeId = itemStringJson[0].recipeId;
+            console.log('query fetched recipe id: %s',maxRecipeId);
+            var recipeJson=JSON.parse(recipe);
+            recipeJson.recipeId = maxRecipeId+1;
+            console.log('new recipeID '+recipeJson.recipeId);
+
+            this.model.create([recipeJson], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            response.send('{"id":"' + recipeJson.recipeId + '"}');
+        });
+    }
+
     public retrieveRecipeByUserId(response:any, user:String) {
         var query = this.model.find({userId: user});
         query.exec( (err, itemArray) => {

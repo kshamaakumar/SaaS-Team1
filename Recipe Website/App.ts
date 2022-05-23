@@ -73,18 +73,12 @@ class App {
     */
     //API to add a new Recipe
     router.post('/app/recipe/:accountId', (req, res) => {
-      const id = crypto.randomBytes(16).toString("hex");
+      //const id = crypto.randomBytes(16).toString("hex");
       console.log(req.body);
       var jsonObj = req.body;
-      jsonObj.listId = id;
-      this.Recipes.model.create([jsonObj], (err) => {
-        if (err) {
-          console.log('object creation failed');
-        }
-      });
-      res.send('{"id":"' + id + '"}');
+      jsonObj.userId = req.params.accountId;
+      this.Recipes.createRecipe(res, JSON.stringify(jsonObj));
     });
-
 
     const cors = require('cors');
     this.expressApp.use(cors({
