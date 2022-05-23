@@ -13,9 +13,9 @@ npm install async
 step 5: create test directory
 mkdir test
 
-step 5:create a test.js file to write the test case
+step 5:create a .js file to write the test case
 
-step7: Run the below command to execute the test.js file 
+step7: Run the below command to execute the .js file 
 node ./node_modules/mocha/bin/mocha
 
 
