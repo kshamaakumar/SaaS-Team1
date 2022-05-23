@@ -48,17 +48,15 @@ li p{
 
 .panel-body{
   border-radius: 2rem;
-  background-color: whitesmoke;
-  display: inline-block;
+  background-color: white;
   font-size: 0.8rem;
   color: grey;
   margin-right: 0.3rem;
   padding: 0 0.5rem;
-  margin-top: 0.2rem;
+  margin-top: 10rem;
 }
 
 .panel-body{
   font-size: 0.9rem;
   flex: 3;
-  text-align: right;
 }
