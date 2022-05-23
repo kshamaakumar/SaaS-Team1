@@ -6,8 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeComponent } from './user-recipes/recipe.component';
 import { FoodPageComponent } from './food-page/food-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FoodPageComponent } from './food-page/food-page.component';
     HeaderComponent,
     HomeComponent,
     RecipeComponent,
+    UserProfileComponent,
     FoodPageComponent
   ],
   imports: [

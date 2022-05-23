@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RecipeComponent } from './recipe/recipe.component';
+import { RecipeComponent } from './user-recipes/recipe.component';
 import { HomeComponent } from './home/home.component';
 import { FoodPageComponent } from './food-page/food-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
-  {path: 'recipe', component:  RecipeComponent},
+  {path: 'user_recipes/:userId', component:  RecipeComponent},
   { path: '', component:  HomeComponent},
+  {path: 'user_profile/:userId', component:  UserProfileComponent},
   {path: 'food-page', component:  FoodPageComponent},
 
 ];

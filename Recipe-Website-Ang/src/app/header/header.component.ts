@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,6 +11,15 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+  userProfile(userId:number): string {
+    return "/user_profile/" + userId;
+  }
+
+  userRecipes(userId:number): string {
+    return "/user_recipes/" + userId;
   }
 
 }

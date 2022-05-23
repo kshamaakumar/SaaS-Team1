@@ -9,8 +9,8 @@
           <li class="menu-container">
             <a routerLink="/dashboard">Username</a>
             <div class="menu">
-              <a routerLink="/profile">Profile</a>
-              <a routerLink="/recipe" routerLinkActive = "active">Recipe</a>
+              <a routerLink={{userProfile(1)}}>Profile</a>
+              <a routerLink={{userRecipes(1)}} routerLinkActive = "active">Recipes</a>
               <a>Logout</a>
             </div>
           </li>
