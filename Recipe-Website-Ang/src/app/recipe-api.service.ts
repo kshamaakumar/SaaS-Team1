@@ -13,6 +13,6 @@ export class RecipeApiService {
   }
 
   getRecipes(){
-    return this.http.get<RecipeClass[]>(this.hostUrl + '/app/recipe/.json');
+    return this.http.get<RecipeClass[]>(this.hostUrl + 'app/recipe/');
   }
 }
