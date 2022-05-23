@@ -1,4 +1,4 @@
-<h3 class="panel-heading">Recipes</h3>
+<h3 class="panel-heading">My Recipes</h3>
   
 <div class="panel panel-default"
 *ngFor="let data of results; let i = index">
@@ -16,15 +16,9 @@
       </span>
     </div>
 
-    <div class="Calories">
-      <span>
-        Calorie count:{{data.calorie}}
-      </span>
-    </div>
-
     <div class="cook-time">
       <span>
-        Time to cook: <strong>{{data.cookTime}}</strong>
+        Calorie count:<strong>{{data.calorie}}</strong>
       </span>
     </div>
   </div>
