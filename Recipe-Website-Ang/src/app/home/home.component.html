@@ -8,19 +8,21 @@
 
 </div>
 
-<div class="container1"
+<div class="container"
       *ngFor="let data of filtere; let i = index">
-      <img src={{data.imageUrl}} alt=""/>
+      <img src={{data.imageUrl}} alt="" width="350" height="350"/>
         <!-- Default panel contents -->
         
-            <span class="name">
+        <div class="name">
+            
               Name: {{data.recipeName}}
-            </span>
+            
+        </div>
           
           <div class="description">
-            <span>
+            
               Steps: {{data.description}}
-            </span>
+            
           </div>
 
           <div class="cook-time">

@@ -64,12 +64,6 @@ var RecipeModel = /** @class */ (function () {
             response.json(itemArray);
         });
     };
-    RecipeModel.prototype.retrieveRecipeByKeyword = function (response, word) {
-        var query = this.model.find({ recipeName: "Egg" });
-        query.exec(function (err, itemArray) {
-            response.json(itemArray);
-        });
-    };
     return RecipeModel;
 }());
 exports.RecipeModel = RecipeModel;

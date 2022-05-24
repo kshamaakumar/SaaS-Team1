@@ -47,11 +47,6 @@ var App = /** @class */ (function () {
             console.log('Query recipes with userId: ' + id);
             _this.Recipes.retrieveRecipeByUserId(res, id);
         });
-        router.get('/app/search/:word', function (req, res) {
-            var word = req.params.word;
-            console.log('Query recipes with keyWord: ' + word);
-            _this.Recipes.retrieveRecipeByKeyword(res, word);
-        });
         /*
         router.post('/app/recipe/:accountId', (req, res) => {
           console.log('Add recipe'+req.body.recipeName);
