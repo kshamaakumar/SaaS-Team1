@@ -15,9 +15,6 @@ export class RecipeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private apiService: RecipeApiService) { }
 
-
-
-
   ngOnInit(): void {
     this.userId = this.route.snapshot.params['userId'];
     this.apiService.getRecipesByUser(this.userId).subscribe((result:RecipeClass[]) =>{

@@ -1,6 +1,37 @@
-<app-search></app-search>
+<div>
+  <input type="text" placeholder="Search recipes!" name= "search" #searchText>
+
+  <button (click)="applyFilter(searchText.value)">Search</button>
+
+  <div class="Foodlist"
+      *ngFor="let data of filtere; let i = index">
+      <img src={{data.imageUrl}} alt=""/>
+        <!-- Default panel contents -->
+        <div class="details">
+          <div class="header">
+            <span class="name">
+              Name: {{data.recipeName}}
+            </span>
+          </div>
+          <div class="description">
+            <span>
+              Steps: {{data.description}}
+            </span>
+          </div>
+
+          <div class="cook-time">
+            <span>
+              Calorie count:<strong>{{data.calorie}}</strong>
+            </span>
+          </div>
+        </div>
+</div>
+
+
+</div>
 
 <div class="panel-body">
+
 <div class="Foodlist" 
   *ngFor="let data of results; let i = index">
   <!-- Default panel contents -->
