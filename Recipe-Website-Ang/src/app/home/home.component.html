@@ -3,16 +3,20 @@
 
   <button (click)="applyFilter(searchText.value)">Search</button>
 
-  <div class="Foodlist"
+  
+
+
+</div>
+
+<div class="container1"
       *ngFor="let data of filtere; let i = index">
       <img src={{data.imageUrl}} alt=""/>
         <!-- Default panel contents -->
-        <div class="details">
-          <div class="header">
+        
             <span class="name">
               Name: {{data.recipeName}}
             </span>
-          </div>
+          
           <div class="description">
             <span>
               Steps: {{data.description}}
@@ -24,12 +28,11 @@
               Calorie count:<strong>{{data.calorie}}</strong>
             </span>
           </div>
-        </div>
+        
 </div>
 
 
-</div>
-
+<h3 class="panel-heading">Popular Recipes</h3>
 <div class="panel-body">
 
 <div class="Foodlist" 
