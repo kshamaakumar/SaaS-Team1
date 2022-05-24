@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
 
   applyFilter(filterValue:string){
     //let filterValueLower = filterValue.toLowerCase();
+    this.filtere = [];
+    if (filterValue === '') {
+      return;
+    }
     for(var recipe of this.results){
          if(recipe.recipeName.includes(filterValue)) {
             this.filtere.push(recipe);
