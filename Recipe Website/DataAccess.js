@@ -16,7 +16,9 @@ var DataAccess = /** @class */ (function () {
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
         return this.mongooseInstance;
     };
-    DataAccess.DB_CONNECTION_STRING = 'mongodb://dbAdmin:test@127.0.0.1:27017/recipeWebsiteDatabase?authSource=admin';
+    // static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@127.0.0.1:27017/recipeWebsiteDatabase?authSource=admin';
+    // The above is to connet local mongoDB, the following is to connect to cloud mongoDB
+    DataAccess.DB_CONNECTION_STRING = 'mongodb+srv://dbAdmin:test@cluster0.m4cmdsp.mongodb.net/recipeWebsiteDatabase?retryWrites=true&w=majority';
     return DataAccess;
 }());
 exports.DataAccess = DataAccess;

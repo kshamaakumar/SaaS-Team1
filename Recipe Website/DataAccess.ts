@@ -3,7 +3,9 @@ import Mongoose = require("mongoose");
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-    static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@127.0.0.1:27017/recipeWebsiteDatabase?authSource=admin';
+    // static DB_CONNECTION_STRING:string = 'mongodb://dbAdmin:test@127.0.0.1:27017/recipeWebsiteDatabase?authSource=admin';
+    // The above is to connet local mongoDB, the following is to connect to cloud mongoDB
+    static DB_CONNECTION_STRING:string = 'mongodb+srv://dbAdmin:test@cluster0.m4cmdsp.mongodb.net/recipeWebsiteDatabase?retryWrites=true&w=majority';
     
     constructor () {
         DataAccess.connect();
