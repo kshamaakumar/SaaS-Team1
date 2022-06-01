@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node AppAerver.js",
+    "start": "node AppServer.js",
     "build": "tsc"
   },
   "author": "",
