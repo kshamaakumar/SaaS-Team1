@@ -8,7 +8,8 @@ import { HttpClient, HttpRequest } from '@angular/common/http';
 })
 export class RecipeApiService {
 
-  hostUrl:string = 'http://localhost:8080/';
+  //hostUrl:string = 'http://localhost:8080/';
+  hostUrl:string = "";
 
   constructor(private http: HttpClient) {
   }
