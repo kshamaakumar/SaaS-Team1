@@ -28,8 +28,17 @@ class App {
   private middleware(): void {
     this.expressApp.use(bodyParser.json());
     this.expressApp.use(bodyParser.urlencoded({ extended: false }));
-  }
+    this.expressApp.use(function (req, res, next) {
+      // Cross-Origin Resource Sharing 
+      // CORS is an HTTP-header based mechanism that allows a server  
+      // to indicate any origins (domain, scheme, or port) other than 
+      // its own from which a browser  should permit loading resources
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
 
+  }
 
 
   // Configure API endpoints.
